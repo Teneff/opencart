@@ -8,17 +8,20 @@
     "require": {
         "cardinity/cardinity-sdk-php": "^1.0",
         "braintree/braintree_php" : "3.2.0",
-        "leafo/scssphp": "0.0.12",
         "divido/divido-php": ">=1.1.1",
         "klarna/kco_rest": "^2.2",
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+		"twig/twig": "^2.12",
+		"scssphp/scssphp": "^1.0"
     },
 	"require-dev": {
 		"squizlabs/php_codesniffer": "^3.5",
-        "phploc/phploc": "^5.0"
+        "phploc/phploc": "^5.0",
+		"sserbin/twig-linter": "^1.0"
     },
     "scripts": {
         "lint": "phpcs --report=checkstyle --report-file=tests/checkstyle.xml --standard=tests/phpcs/OpenCart/ruleset.xml src/",
+        "lint:twig": "twig-linter lint .",
         "lint:fix": "phpcbf --report=checkstyle --report-file=tests/checkstyle.xml --standard=tests/phpcs/OpenCart/ruleset.xml src/",
         "phploc": "phploc --log-csv ./tests/logs/phploc.csv ./src",
         "build": [

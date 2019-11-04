@@ -2,9 +2,9 @@ version: '3'
 services:
 
   #PHP Service
-  backend:
+  php:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
       args:
         - WITH_XDEBUG=true
@@ -12,21 +12,19 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "8910:80"
+      - "8910:8000"
+    volumes: 
+      - ./src:/var/www/opencart
+      - ./vendor:/var/www/vendor
+      - ./src/config-docker.php:/var/www/opencart/config.php
+    working_dir: /var/www/opencart
+    env_file: 
+      - .env
     environment:
       SERVICE_NAME: opencart
       SERVICE_TAGS: dev
       XDEBUG_CONFIG: profiler_enable=1 remote_host=host.docker.internal remote_enable=1 remote_autostart=On
-      DB_HOSTNAME: mysql
-      DB_DRIVER: mysqli
-      DB_USERNAME: root
-      DB_PASSWORD: your_mysql_root_password
-      DB_DATABASE: opencart
-      DB_PORT: 3306
-      DB_PREFIX: oc_
-      DOMAIN: localhost
-      APP_HTTP_SERVER: /
-      APP_HTTPS_SERVER: /
+    command: php -S 0.0.0.0:8000 -t /var/www/opencart/public
     networks:
       - oc-net
 

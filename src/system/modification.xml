@@ -26,8 +26,8 @@
 		
 		if (defined('DIR_CATALOG') && is_dir(DIR_MODIFICATION . 'admin/view/template/')) {	
 			$loader->addPath(DIR_MODIFICATION . 'admin/view/template/');
-		} elseif (is_dir(DIR_MODIFICATION . 'catalog/view/theme/')) {
-			$loader->addPath(DIR_MODIFICATION . 'catalog/view/theme/');
+		} elseif (is_dir(DIR_MODIFICATION . '/theme/')) {
+			$loader->addPath(DIR_MODIFICATION . '/theme/');
 		}
 		
 		$loader->addPath(DIR_TEMPLATE);]]>

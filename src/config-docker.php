@@ -1,0 +1,31 @@
+<?php
+// HTTP
+define('HTTP_SERVER', $_ENV['HTTP_SERVER']);
+
+// HTTPS
+define('HTTPS_SERVER', $_ENV['HTTPS_SERVER']);
+
+// DIR
+define('DIR_APPLICATION', $_ENV['DIR_MAIN'] . $_ENV['DIR_APPLICATION']);
+define('DIR_PUBLIC', $_ENV['DIR_MAIN'] . $_ENV['DIR_PUBLIC']);
+define('DIR_SYSTEM', $_ENV['DIR_MAIN'] . $_ENV['DIR_SYSTEM']);
+define('DIR_IMAGE', $_ENV['DIR_MAIN'] . $_ENV['DIR_IMAGE']);
+define('DIR_STORAGE', $_ENV['DIR_MAIN'] . $_ENV['DIR_STORAGE']);
+define('DIR_LANGUAGE', $_ENV['DIR_MAIN'] . $_ENV['DIR_LANGUAGE']);
+define('DIR_TEMPLATE', $_ENV['DIR_MAIN'] . $_ENV['DIR_TEMPLATE']);
+define('DIR_CONFIG', $_ENV['DIR_MAIN'] . $_ENV['DIR_CONFIG']);
+define('DIR_CACHE', $_ENV['DIR_MAIN'] . $_ENV['DIR_CACHE']);
+define('DIR_DOWNLOAD', $_ENV['DIR_MAIN'] . $_ENV['DIR_DOWNLOAD']);
+define('DIR_LOGS', $_ENV['DIR_MAIN'] . $_ENV['DIR_LOGS']);
+define('DIR_MODIFICATION', $_ENV['DIR_MAIN'] . $_ENV['DIR_MODIFICATION']);
+define('DIR_SESSION', $_ENV['DIR_MAIN'] . $_ENV['DIR_SESSION']);
+define('DIR_UPLOAD', $_ENV['DIR_MAIN'] . $_ENV['DIR_UPLOAD']);
+
+// DB
+define('DB_DRIVER', $_ENV['DB_DRIVER']);
+define('DB_HOSTNAME', $_ENV['DB_HOSTNAME']);
+define('DB_USERNAME', $_ENV['DB_USERNAME']);
+define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
+define('DB_DATABASE', $_ENV['DB_DATABASE']);
+define('DB_PORT', $_ENV['DB_PORT']);
+define('DB_PREFIX', $_ENV['DB_PREFIX']);

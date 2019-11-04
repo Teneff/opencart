@@ -1,9 +1,5 @@
 FROM php:7.3.6-alpine
 
-WORKDIR /var/www/html
-
-COPY src/ .
-
 RUN docker-php-ext-install mysqli
 
 RUN apk add --no-cache \

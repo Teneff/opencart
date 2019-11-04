@@ -11,20 +11,20 @@
 !/upload/image/cache/index.html
 
 # System Cache Files
-/upload/system/storage/cache/*
-!/upload/system/storage/cache/index.html
+*/system/storage/cache/*
+!*/system/storage/cache/index.html
 
 # Modification Files
-/upload/system/storage/modification/*
-!/upload/system/storage/modification/index.html
+*/system/storage/modification/*
+!*/system/storage/modification/index.html
 
 # Templates Files
-/upload/image/templates/*
-/upload/image/templates/default.jpg
+*/image/templates/*
+*/image/templates/default.jpg
 
 # Download Files
-/upload/system/storage/download/*
-!/upload/system/storage/download/index.html
+*/system/storage/download/*
+!*/system/storage/download/index.html
 
 # Session Files
 /upload/system/storage/session/*
@@ -39,8 +39,8 @@
 # /upload/flags/*
 
 # Log Files
-/upload/system/storage/logs/*
-!/upload/system/storage/logs/index.html
+*/system/storage/logs/*
+!*/system/storage/logs/index.html
 
 # If you want to ignore install file use following lines [on development mode]
 # /upload/backup.install/*
