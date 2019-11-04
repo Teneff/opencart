@@ -1,19 +1,7 @@
 <?php
-/**
- * Validates variable names.
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://opensource.org/licenses/BSD-3-Clause
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
 
-if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === false) {
-    throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_Standards_AbstractVariableSniff not found');
-}
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
 
 /**
  * Squiz_Sniffs_NamingConventions_ValidVariableNameSniff.
@@ -29,7 +17,7 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === fa
  * @version   Release: 1.3.3
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class OpenCart_Sniffs_Variables_ValidVariableNameSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff {
+class OpenCart_Sniffs_Variables_ValidVariableNameSniff extends AbstractVariableSniff {
 
     /**
      * Tokens to ignore so that we can find a DOUBLE_COLON.
@@ -57,13 +45,13 @@ class OpenCart_Sniffs_Variables_ValidVariableNameSniff extends PHP_CodeSniffer_S
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token in the
      *                                        stack passed in $tokens.
      *
      * @return void
      */
-    protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    protected function processVariable(File $phpcsFile, $stackPtr) {
         $tokens  = $phpcsFile->getTokens();
         $varName = ltrim($tokens[$stackPtr]['content'], '$');
 
@@ -123,13 +111,13 @@ class OpenCart_Sniffs_Variables_ValidVariableNameSniff extends PHP_CodeSniffer_S
     /**
      * Processes class member variables.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token in the
      *                                        stack passed in $tokens.
      *
      * @return void
      */
-    protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    protected function processMemberVar(File $phpcsFile, $stackPtr) {
         $tokens = $phpcsFile->getTokens();
 
         $varName     = ltrim($tokens[$stackPtr]['content'], '$');
@@ -158,13 +146,13 @@ class OpenCart_Sniffs_Variables_ValidVariableNameSniff extends PHP_CodeSniffer_S
     /**
      * Processes the variable found within a double quoted string.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the double quoted
      *                                        string.
      *
      * @return void
      */
-    protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    protected function processVariableInString(File $phpcsFile, $stackPtr) {
         $tokens = $phpcsFile->getTokens();
 
         $phpReservedVars = array(

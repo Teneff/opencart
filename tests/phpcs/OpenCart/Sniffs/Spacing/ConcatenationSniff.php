@@ -1,4 +1,8 @@
 <?php
+
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
+
 /**
  * Makes sure there are the needed spaces between the concatenation operator (.) and
  * the strings being concatenated.
@@ -9,7 +13,7 @@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  * @Licence   http://www.gnu.org/licenses/gpl-2.0.html
  */
-class OpenCart_Sniffs_Spacing_ConcatenationSniff implements PHP_CodeSniffer_Sniff {
+class OpenCart_Sniffs_Spacing_ConcatenationSniff implements Sniff {
 	/**
 	 * Returns an array of tokens this test wants to listen for.
 	 *
@@ -24,7 +28,7 @@ class OpenCart_Sniffs_Spacing_ConcatenationSniff implements PHP_CodeSniffer_Snif
 	/**
 	 * Processes this test, when one of its tokens is encountered.
 	 */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+	public function process(File $phpcsFile, $stackPtr) {
 		$tokens = $phpcsFile->getTokens();
 		if ($tokens[($stackPtr - 1)]['code'] !== T_WHITESPACE || $tokens[($stackPtr + 1)]['code'] !== T_WHITESPACE) {
 			$message = 'PHP concat operator must be surrounded by spaces';

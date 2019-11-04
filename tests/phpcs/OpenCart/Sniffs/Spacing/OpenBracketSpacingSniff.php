@@ -1,4 +1,8 @@
 <?php
+
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
+
 /**
  * Checks that there is no white space after an opening bracket, for "(" and "{".
  * Square Brackets are handled by Squiz_Sniffs_Arrays_ArrayBracketSpacingSniff.
@@ -8,7 +12,7 @@
  * @link     http://pear.php.net/package/PHP_CodeSniffer
  * @Licence   http://www.gnu.org/licenses/gpl-2.0.html
  */
-class OpenCart_Sniffs_Spacing_OpenBracketSpacingSniff implements PHP_CodeSniffer_Sniff {
+class OpenCart_Sniffs_Spacing_OpenBracketSpacingSniff implements Sniff {
     /**
      * A list of tokenizers this sniff supports.
      *
@@ -36,13 +40,13 @@ class OpenCart_Sniffs_Spacing_OpenBracketSpacingSniff implements PHP_CodeSniffer
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token
      *                                        in the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(File $phpcsFile, $stackPtr) {
         $tokens = $phpcsFile->getTokens();
 
         // Ignore curly brackets in javascript files.

@@ -1,0 +1,97 @@
+version: '3'
+services:
+
+  #PHP Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        - WITH_XDEBUG=true
+    container_name: opencart-php
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8910:80"
+    environment:
+      SERVICE_NAME: opencart
+      SERVICE_TAGS: dev
+      XDEBUG_CONFIG: profiler_enable=1 remote_host=host.docker.internal remote_enable=1 remote_autostart=On
+      DB_HOSTNAME: mysql
+      DB_DRIVER: mysqli
+      DB_USERNAME: root
+      DB_PASSWORD: your_mysql_root_password
+      DB_DATABASE: opencart
+      DB_PORT: 3306
+      DB_PREFIX: oc_
+      DOMAIN: localhost
+      APP_HTTP_SERVER: /
+      APP_HTTPS_SERVER: /
+    networks:
+      - oc-net
+
+  # # HTTPd Service
+  # apache:
+  #   image: httpd:latest
+  #   container_name: opencart-apache
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8080:80"
+  #     - "8443:443"
+  #   volumes:
+  #     - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+  #     - ./src:/var/www/opencart
+  #   working_dir: /var/www/opencart
+  #   networks:
+  #     - oc-net
+
+  # # nginx:
+  #   image: nginx:1.17.4
+  #   container_name: opencart-nginx
+  #   restart: unless-stopped
+  #   tty: true
+  #   ports:
+  #     - "9080:80"
+  #     - "9443:443"
+  #   volumes:
+  #     - ./nginx/conf.d:/etc/nginx/conf.d
+  #     - ./backend:/var/www/opencart
+  #   working_dir: /var/www/opencart
+  #   environment:
+  #     - NGINX_HOST=localhost
+  #     - NGINX_PORT=80
+  #   networks:
+  #     - oc-net
+
+  #MySQL Service
+  mysql:
+    image: mysql:8.0.18
+    container_name: opencart-mysql
+    restart: always
+    tty: true
+    # ports:
+    #   - "3306:3306"
+    environment:
+      MYSQL_DATABASE: opencart
+      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    command: "--default-authentication-plugin=mysql_native_password"
+    volumes: 
+      - oc-data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    networks:
+      - oc-net
+
+  # unit:
+  #   image: composer:latest
+  #   networks:
+  #     - oc-net
+
+#Docker Networks
+networks:
+  oc-net:
+    driver: bridge
+
+volumes: 
+  oc-data:

@@ -2,6 +2,8 @@
 // Version
 define('VERSION', '3.0.0.1');
 
+require_once '../../vendor/autoload.php';
+
 // Configuration
 if (is_file('config.php')) {
 	require_once('config.php');
